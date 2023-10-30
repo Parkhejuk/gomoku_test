@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6228688264086916383}
   - component: {fileID: 7533342478470020463}
-  - component: {fileID: 936219863205504059}
+  - component: {fileID: -506383337788582655}
   m_Layer: 6
   m_Name: Black Stone
   m_TagString: Stone
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &936219863205504059
+--- !u!65 &-506383337788582655
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,5 +105,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.38072288, y: 0.38072288, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.39166608, y: 0.3975953, z: 0.2}
+  m_Center: {x: 0, y: -0.002964601, z: 0}

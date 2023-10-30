@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5230751255930899583}
   - component: {fileID: 6026225126312719893}
-  - component: {fileID: -1771453713786754595}
+  - component: {fileID: 7059926000203375365}
   m_Layer: 6
   m_Name: White Stone
   m_TagString: Stone
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &-1771453713786754595
+--- !u!65 &7059926000203375365
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,5 +105,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3893976, y: 0.3893976, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.39724344, y: 0.4019416, z: 0.2}
+  m_Center: {x: 0, y: -0.000000007450581, z: 0}
