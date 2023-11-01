@@ -10,12 +10,17 @@ public class StoneManager : MonoBehaviour
     public GameObject m_whiteStonePrefabs;
     public GameObject m_AlphaStonePool;
 
+    //board에 관한 데이터들
+    const int m_boardSize = 15;
+
 
     //isOrder 1(true)로 시작, 1(true)은 흑돌, 0(false)은 백돌,
     //다른 Script에서 isOrder를 사용하기 위한 get
     bool m_isOrder = true;
     static bool m_isBlackStone = true;
     static bool m_isWhiteStone = false;
+
+    public bool m_IsOrder { get;  set; }
 
     //Ray
     Ray ray;
@@ -39,7 +44,6 @@ public class StoneManager : MonoBehaviour
                     var obj = Instantiate(m_isOrder ? m_blackStonePrefabs : m_whiteStonePrefabs, hit.collider.bounds.center, Quaternion.identity);
                     obj.transform.SetParent(m_instantedStone.transform);
                     m_isOrder = m_isOrder ? m_isWhiteStone : m_isBlackStone;
-
                 }
             }
         }

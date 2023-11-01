@@ -124,6 +124,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12811687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 12811688}
+  m_Layer: 0
+  m_Name: Origin Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &12811688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12811687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.038566004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227832130
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +382,7 @@ Transform:
   m_GameObject: {fileID: 295544303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.316511, y: -0.3356486, z: 0}
+  m_LocalPosition: {x: 1.76, y: -0.925, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -367,6 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304949202}
   - component: {fileID: 304949201}
+  - component: {fileID: 304949203}
   m_Layer: 0
   m_Name: Stone Manager
   m_TagString: Untagged
@@ -389,16 +421,11 @@ MonoBehaviour:
   m_gridVertexPrefab: {fileID: 5156665158372796588, guid: f7dd36a3448be5c40a043290fdcc4a87,
     type: 3}
   m_instantedStone: {fileID: 2129891793}
-  m_AlphaStonePool: {fileID: 227832130}
-  m_blackStone60A: {fileID: 3382331519551005125, guid: bd2fe23d0bd023946a0af2f857f2b8fa,
-    type: 3}
-  m_whiteStone60A: {fileID: 1961789519447267189, guid: 8e563ac98170e4c41994bc553eb5fbf1,
-    type: 3}
   m_blackStonePrefabs: {fileID: 5498934347118902416, guid: a1e6963ad1a6af24999cf60aa2d92738,
     type: 3}
   m_whiteStonePrefabs: {fileID: 4331106003845633183, guid: 96cbb73533f118f46b452dbd556abede,
     type: 3}
-  m_boardCollider: {fileID: 0}
+  m_AlphaStonePool: {fileID: 227832130}
 --- !u!4 &304949202
 Transform:
   m_ObjectHideFlags: 0
@@ -416,6 +443,18 @@ Transform:
   - {fileID: 227832131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304949203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304949200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e85236136c2c541a90eee867616f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &440456144
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +584,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 273380483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: _Reset
+        m_MethodName: _Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -679,7 +718,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 2.7475, y: 2.7475, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -773,7 +812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -929,7 +968,7 @@ Transform:
   m_GameObject: {fileID: 1092901743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.7475, y: 2.7475, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1033,7 +1072,7 @@ GameObject:
   - component: {fileID: 1403166741}
   - component: {fileID: 1403166740}
   m_Layer: 5
-  m_Name: Start
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,7 +1156,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 273380483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: _Reset
+        m_MethodName: _MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1373,3 +1412,4 @@ SceneRoots:
   - {fileID: 273380482}
   - {fileID: 1117847061}
   - {fileID: 863157153}
+  - {fileID: 12811688}
