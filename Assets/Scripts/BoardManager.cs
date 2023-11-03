@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    public GameObject m_gridVertexPrefab; //좌표값만을 담은 GameObject Prefabs, 아래 Board Coordinate 오브젝트에 담아야 함
-    public GameObject m_boardCoordinate; // GoBoard 오브젝트의 하위에 있는 Board Coordinate 오브젝트
+    [SerializeField] GameObject m_gridVertexPrefab; //좌표값만을 담은 GameObject Prefabs, 아래 Board Coordinate 오브젝트에 담아야 함
+    [SerializeField] GameObject m_boardCoordinate; // GoBoard 오브젝트의 하위에 있는 Board Coordinate 오브젝트
     GameObject m_gridVertexObj;
 
     //가로, 세로 크기 & 교차점 개수

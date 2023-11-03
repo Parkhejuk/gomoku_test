@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject m_instantedStone; // Stone Manager 오브젝트의 하위에 있는 Instanted Stone 오브젝트 
+    [SerializeField] GameObject m_instantedStone; // Stone Manager 오브젝트의 하위에 있는 Instanted Stone 오브젝트 
     StoneManager m_stoneManager;
     public void _Restart()
     {
@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
             // 자식 오브젝트를 제거
             Destroy(m_instantedStone.transform.GetChild(i).gameObject);
         }
-        m_stoneManager.m_IsOrder = true;
     }
 
     public void _MainMenu()
@@ -23,4 +22,8 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    void Start()
+    {
+        m_stoneManager = GetComponent<StoneManager>();
+    }
 }

@@ -4,35 +4,33 @@ using UnityEngine;
 
 public class StoneManager : MonoBehaviour
 {
-    public GameObject m_gridVertexPrefab;
-    public GameObject m_instantedStone;
-    public GameObject m_blackStonePrefabs;
-    public GameObject m_whiteStonePrefabs;
-    public GameObject m_AlphaStonePool;
+    [SerializeField] GameObject m_gridVertexPrefab;
+    [SerializeField] GameObject m_instantedStone;
+    [SerializeField] GameObject m_blackStonePrefabs;
+    [SerializeField] GameObject m_whiteStonePrefabs;
+    [SerializeField] GameObject m_AlphaStonePool;
 
-    //board에 관한 데이터들
-    const int m_boardSize = 15;
-
-
-    //isOrder 1(true)로 시작, 1(true)은 흑돌, 0(false)은 백돌,
-    //다른 Script에서 isOrder를 사용하기 위한 get
+    //isOrder 1(true)로 시작, 1(true)은 흑돌, 0(false)은 백돌
+    //다른 Script에서 isOrder를 사용하기 위한 프로퍼티
     bool m_isOrder = true;
     static bool m_isBlackStone = true;
     static bool m_isWhiteStone = false;
 
-    public bool m_IsOrder { get;  set; }
+    public bool m_IsOrder { get { return m_isOrder; } set { m_isOrder = value; } }
 
-    //Ray
-    Ray ray;
-    RaycastHit hit;
+    public RaycastHit hit;
+    RuleManager m_ruleManager;
 
+    private void Start()
+    {
+        m_ruleManager = FindObjectOfType<RuleManager>();
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (RayCastUtil.RaycastFromMouse(out hit))
             {
                 if (hit.collider.gameObject.tag == "Stone") // 특정 위치 스톤 오브젝트 중복 생성 제한
                 {
@@ -44,6 +42,9 @@ public class StoneManager : MonoBehaviour
                     var obj = Instantiate(m_isOrder ? m_blackStonePrefabs : m_whiteStonePrefabs, hit.collider.bounds.center, Quaternion.identity);
                     obj.transform.SetParent(m_instantedStone.transform);
                     m_isOrder = m_isOrder ? m_isWhiteStone : m_isBlackStone;
+
+                    m_ruleManager.UpdateBoardState();
+
                 }
             }
         }

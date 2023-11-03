@@ -5,7 +5,7 @@ using UnityEngine;
 // GridVertexPrefab
 public class MouseOnBoard : MonoBehaviour
 {
-    public GameObject m_onMousePrefab;
+    [SerializeField] GameObject m_onMousePrefab;
 
     GameObject m_generatedAStone;
     private void OnMouseEnter()
