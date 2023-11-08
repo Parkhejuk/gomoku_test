@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject m_instantedStone; // Stone Manager 오브젝트의 하위에 있는 Instanted Stone 오브젝트 
-    StoneManager m_stoneManager;
+
     public void _Restart()
     {
 
@@ -20,10 +20,5 @@ public class UIManager : MonoBehaviour
     public void _MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    void Start()
-    {
-        m_stoneManager = GetComponent<StoneManager>();
     }
 }

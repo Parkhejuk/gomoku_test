@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 화면에 출력될 바둑판 오브젝트 관리 클래스
 public class BoardManager : MonoBehaviour
 {
     [SerializeField] GameObject m_gridVertexPrefab; //좌표값만을 담은 GameObject Prefabs, 아래 Board Coordinate 오브젝트에 담아야 함
@@ -20,6 +21,11 @@ public class BoardManager : MonoBehaviour
     float m_yPos = m_cYPos;
 
     const float m_sideLeng = 0.3925f;
+
+    //다른 스크립트에서 사용하는 변수 프로퍼티
+    public int m_BoardSize { get { return m_boardSize; } }
+    public float m_SideLeng { get { return m_sideLeng; } }
+
     void GridVertexMax() // 교차점의 개수 구하는 함수
     {
         m_GridVertexMax = m_boardSize * m_boardSize;
