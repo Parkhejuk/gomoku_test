@@ -63,9 +63,9 @@ public class CurrentBoardStateInit : MonoBehaviour
         m_CurrentBoardState[m_row, m_col] = m_stoneManager.m_IsOrder ? 1 : 0;
 
         //물림수를 저장
-        m_stoneBacksies.SetBacksies1(m_row, m_col, obj);
+        m_stoneBacksies.SetBacksies(m_row, m_col, obj);
 
-        //GetCurrenBoardStateArr();
+        GetCurrenBoardStateArr();
     }
 
     void Start()

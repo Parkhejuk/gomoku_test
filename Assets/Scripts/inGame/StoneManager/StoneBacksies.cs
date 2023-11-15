@@ -7,47 +7,31 @@ public class StoneBacksies : MonoBehaviour
 {
     CurrentBoardStateInit m_currentBoardStateInit;
 
-    //전수의 GameObject 데이터를 저장할 변수
-    GameObject m_obj1;
-    GameObject m_obj2;
+    // Util폴더에 있는 Dequeue Script, 사용자 생성 클래스
+    // LinkedList<T>로 생성되어 있어서 기능이 제한된 LinkedList라 생각하면 됨
+    Dequeue<int> m_row = new Dequeue<int>();
+    Dequeue<int> m_col = new Dequeue<int>();
+    Dequeue<GameObject> m_Stoneobj = new Dequeue<GameObject>();
 
-    //전수의 행렬값를 저장할 변수;
-    public int[] m_stoneBacksies1 { get; set; }
-    public int[] m_stoneBacksies2 { get; set; }
-
-    //물림수를 저장하는 함수 (최대 1회까지);
-    public void SetBacksies1(int row, int col, GameObject obj)
+    //물림수를 저장하는 함수;
+    public void SetBacksies(int row, int col, GameObject obj)
     {
-        if (m_stoneBacksies1[0] == 0)
-        {
-            m_stoneBacksies1[0] = row;
-            m_stoneBacksies1[1] = col;
-        }
-        else
-        {
-            SetBacksies2();
-            m_stoneBacksies1[0] = row;
-            m_stoneBacksies1[1] = col;
-        }
-        m_obj1 = obj;
-    }
-    void SetBacksies2()
-    {
-        m_stoneBacksies2[0] = m_stoneBacksies1[0];
-        m_stoneBacksies2[1] = m_stoneBacksies1[1];
-        m_obj2 = m_obj1;
+        m_row.PushBack(row);
+        m_col.PushBack(col);
+        m_Stoneobj.PushBack(obj);
     }
 
     //Backsies 버튼을 누르면 실행되는 함수
     public void BacksiesButtonDown()
     {
-        if (m_obj1 != null && m_obj2 != null) //최초 검은색 하나 있을 때 삭제 불가능. 게임 룰 구현 후 이부분 다시 확인
+        if (m_Stoneobj.Count != 0 && m_Stoneobj.Count != 1) //최초 검은색 하나 있을 때 삭제 불가능. 게임 룰 구현 후 이부분 다시 확인
         {
-            m_currentBoardStateInit.m_CurrentBoardState[m_stoneBacksies1[0], m_stoneBacksies1[1]] = -1;
-            m_currentBoardStateInit.m_CurrentBoardState[m_stoneBacksies2[0], m_stoneBacksies2[1]] = -1;
+            int row = m_row.PopBack();
+            int col = m_col.PopBack();
 
-            Destroy(m_obj1);
-            Destroy(m_obj2);
+            m_currentBoardStateInit.m_CurrentBoardState[row, col] = -1;
+
+            Destroy(m_Stoneobj.PopBack());
 
             Debug.Log("수를 물렸습니다.");
         }
@@ -57,20 +41,17 @@ public class StoneBacksies : MonoBehaviour
         }
     }
 
-    //일단 만들어둔 Debug함수 적절하게 복붙해서 쓸것
-    void GetBacksiesData()
+    //Restart 버튼을 누르면 실행되는 함수
+    public void RestartButtonDown()
     {
-        Debug.Log("1: " + m_stoneBacksies1[0] + ", " + m_stoneBacksies1[1]);
-        Debug.Log("2: " + m_stoneBacksies2[0] + ", " + m_stoneBacksies2[1]);
-        Debug.Log("1: " + m_obj1.transform.position);
-        Debug.Log("2" + m_obj2.transform.position);
+        // Dequeue에 저장되어 있는 데이터들 전부 삭제
+        m_row.Clear();
+        m_col.Clear();
+        m_Stoneobj.Clear();
     }
 
     void Start()
     {
         m_currentBoardStateInit = FindAnyObjectByType<CurrentBoardStateInit>();
-
-        m_stoneBacksies1 = new int[2];
-        m_stoneBacksies2 = new int[2];
     }
 }

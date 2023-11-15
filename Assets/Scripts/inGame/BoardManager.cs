@@ -11,7 +11,7 @@ public class BoardManager : MonoBehaviour
 
     //가로, 세로 크기 & 교차점 개수
     const int m_boardSize = 15;
-    int m_GridVertexMax;
+    int m_GridVertexMax = m_boardSize * m_boardSize;
 
     const float m_cXPos = 0f;
     const float m_cYPos = 0f;
@@ -22,14 +22,10 @@ public class BoardManager : MonoBehaviour
 
     const float m_sideLeng = 0.3925f;
 
-    //다른 스크립트에서 사용하는 변수 프로퍼티
+    //다른 스크립트에서 변수를 사용할 수 있도록 프로퍼티 생성
     public int m_BoardSize { get { return m_boardSize; } }
     public float m_SideLeng { get { return m_sideLeng; } }
 
-    void GridVertexMax() // 교차점의 개수 구하는 함수
-    {
-        m_GridVertexMax = m_boardSize * m_boardSize;
-    }
     void CreateGridVertex(int count) // 교차점의 좌표값을 담을 오브젝트 생성하는 함수
     {
         for (int i = 0; i < m_boardSize; i++)
@@ -49,7 +45,6 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
-        GridVertexMax();
         CreateGridVertex(m_GridVertexMax);
     }
 }

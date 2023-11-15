@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 // GridVertexPrefab
 public class MouseOnBoard : MonoBehaviour
@@ -10,7 +11,9 @@ public class MouseOnBoard : MonoBehaviour
     GameObject m_generatedAStone;
     private void OnMouseEnter()
     {
-        m_generatedAStone = Instantiate(m_onMousePrefab, transform.position, Quaternion.identity);
+        //UI 위에서 마우스 이벤트 제한
+        if (!EventSystem.current.IsPointerOverGameObject())
+            m_generatedAStone = Instantiate(m_onMousePrefab, transform.position, Quaternion.identity);
     }
 
     private void OnMouseExit()
