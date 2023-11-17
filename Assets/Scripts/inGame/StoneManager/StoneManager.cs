@@ -7,11 +7,10 @@ using UnityEngine.EventSystems;
 
 public class StoneManager : MonoBehaviour
 {
-    [SerializeField] GameObject m_gridVertexPrefab;
-    [SerializeField] GameObject m_instantedStone;
+    [SerializeField] GameObject m_instantedStone; //StonePrefab 오브젝트를 담을 부모 오브젝트
     [SerializeField] GameObject m_blackStonePrefabs;
     [SerializeField] GameObject m_whiteStonePrefabs;
-    [SerializeField] GameObject m_AlphaStonePool;
+    [SerializeField] GameObject m_emptyObject;
 
     [SerializeField] GameObject m_UI;
     [SerializeField] GameObject m_whiteWinUIPrefabs;
@@ -22,12 +21,13 @@ public class StoneManager : MonoBehaviour
     public RaycastHit hit;
 
     //isOrder 1(true)로 시작, 1(true)은 흑돌, 0(false)은 백돌 & player 정보
-    bool m_isOrder = true;
+    bool m_player = true;
+    bool m_isStoneThree = false;
     static bool m_isBlackStone = true;
     static bool m_isWhiteStone = false;
 
     //다른 스크립트에서 사용할 변수 프로퍼티
-    public bool m_IsOrder { get { return m_isOrder; } set { m_isOrder = value; } }
+    public bool m_IsPlayer { get { return m_player; } set { m_player = value; } }
 
     void Start()
     {
@@ -52,25 +52,46 @@ public class StoneManager : MonoBehaviour
                     }
                     else if (hit.collider.gameObject.tag != "Stone")
                     {
-
-                        //isOrder가 true(1)일 때 흑돌, false(0)일 때 백돌
-                        var obj = Instantiate(m_isOrder ? m_blackStonePrefabs : m_whiteStonePrefabs, hit.collider.bounds.center, Quaternion.identity);
+                        int player = m_player ? 1 : 0;
+                        //m_playerr가 true(1)일 때 흑돌, false(0)일 때 백돌
+                        var obj = Instantiate(m_emptyObject, hit.collider.bounds.center, Quaternion.identity);
                         obj.transform.SetParent(m_instantedStone.transform);
-                        m_currentBoardStateInit.UpdateBoardState(obj);
+                        m_currentBoardStateInit.UpdateBoardState(obj, hit, m_player);
 
-                        int player = m_isOrder ? 1 : 0;
-                        m_ruleManager.CheckRule(player, m_currentBoardStateInit.m_Row, m_currentBoardStateInit.m_Col);
+
+                        int CheckRule = m_ruleManager.CheckRule(player, m_currentBoardStateInit.m_Row, m_currentBoardStateInit.m_Col);
+
+                        switch (CheckRule)
+                        {
+                            case 1:
+                                Debug.Log("33입니다. 이 자리에 둘 수 없습니다.");
+                                m_isStoneThree = true;
+                                break;
+
+                            //case 4:
+                            //    Debug.Log("장목입니다. 이 자리에 둘 수 없습니다.");
+                            //    break;
+
+                            default:
+                                obj = Instantiate(m_player ? m_blackStonePrefabs : m_whiteStonePrefabs, hit.collider.bounds.center, Quaternion.identity);
+                                obj.transform.SetParent(m_instantedStone.transform);
+                                break;
+                        }
 
                         // Black/White Win 결과창 생성
                         if (m_ruleManager.CheckWin(player, m_currentBoardStateInit.m_Row, m_currentBoardStateInit.m_Col))
                         {
-                            var UIobj = Instantiate(m_isOrder ? m_BlackWinUIPrefabs : m_whiteWinUIPrefabs);
+                            var UIobj = Instantiate(m_player ? m_BlackWinUIPrefabs : m_whiteWinUIPrefabs);
                             UIobj.transform.SetParent(m_UI.transform);
                             UIobj.transform.position = new Vector3(645, 1398, 0);
                             UIobj.GetComponent<RectTransform>().sizeDelta = new Vector3(1600, 4000);
                         }
 
-                        m_isOrder = m_isOrder ? m_isWhiteStone : m_isBlackStone;
+                        if (!m_isStoneThree)
+                        {
+                            m_player = m_player ? m_isWhiteStone : m_isBlackStone;
+                            m_isStoneThree = false;
+                        }
                     }
                 }
             }

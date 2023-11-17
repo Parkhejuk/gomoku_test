@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject m_instantedStone; // Stone Manager 오브젝트의 하위에 있는 Instanted Stone 오브젝트 
-    [SerializeField] GameObject m_UI;
+    [SerializeField] GameObject m_UI; //inGame Scene의 Canvas(UI)
 
     public void _Restart()
     {

@@ -14,7 +14,7 @@ public class StoneBacksies : MonoBehaviour
     Dequeue<GameObject> m_Stoneobj = new Dequeue<GameObject>();
 
     //물림수를 저장하는 함수;
-    public void SetBacksies(int row, int col, GameObject obj)
+    public void SetBacksies(GameObject obj, int row, int col)
     {
         m_row.PushBack(row);
         m_col.PushBack(col);
@@ -24,7 +24,8 @@ public class StoneBacksies : MonoBehaviour
     //Backsies 버튼을 누르면 실행되는 함수
     public void BacksiesButtonDown()
     {
-        if (m_Stoneobj.Count != 0 && m_Stoneobj.Count != 1) //최초 검은색 하나 있을 때 삭제 불가능. 게임 룰 구현 후 이부분 다시 확인
+        //생성된 바둑돌이 없거나 흑돌 한 개만 있을 때 Backsies 제한
+        if (m_Stoneobj.Count != 0 && m_Stoneobj.Count != 1)
         {
             int row = m_row.PopBack();
             int col = m_col.PopBack();
